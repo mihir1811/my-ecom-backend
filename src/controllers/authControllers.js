@@ -12,7 +12,8 @@ exports.getAllUSers = async (req, res) => {
     } catch (error) {
         console.log(error)
     }
-}
+}   
+
 exports.signup = async (req, res) => {
     const { username, email, password } = req.body;
 
@@ -33,23 +34,6 @@ exports.signup = async (req, res) => {
         user.password = await bcrypt.hash(password, salt);
 
         await user.save();
-
-        const payload = {
-            user: {
-                id: user.id,
-            },
-        };
-
-        jwt.sign(
-            payload,
-            'jwtSecret',
-            { expiresIn: '24h' }, // Token expires in 24 hours
-            (err, token) => {
-                if (err) throw err;
-                res.json({ token });
-            }
-        );
-
         res.send("user added successfully")
     } catch (err) {
         console.error(err.message);
@@ -59,9 +43,7 @@ exports.signup = async (req, res) => {
 
 exports.signin = async (req, res) => {
     const { email, password } = req.body;
-
-    console.log("rerererfervervreverv", req.body);
-
+S
     try {
         let user = await User.findOne({ email });
 
@@ -77,7 +59,7 @@ exports.signin = async (req, res) => {
 
         const payload = {
             user: {
-                id: user.id,
+                id: user._id,
             },
         };
 
