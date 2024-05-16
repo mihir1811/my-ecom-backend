@@ -12,7 +12,8 @@ exports.getAllUSers = async (req, res) => {
     } catch (error) {
         console.log(error)
     }
-}
+}   
+
 exports.signup = async (req, res) => {
     const { username, email, password } = req.body;
 
@@ -51,9 +52,7 @@ exports.signup = async (req, res) => {
 
 exports.signIn = async (req, res) => {
     const { email, password } = req.body;
-
-    console.log("rerererfervervreverv", req.body);
-
+S
     try {
         let user = await User.findOne({ email });
 
@@ -69,7 +68,7 @@ exports.signIn = async (req, res) => {
 
         const payload = {
             user: {
-                id: user.id,
+                id: user._id,
             },
         };
 
