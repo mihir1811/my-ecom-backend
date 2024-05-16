@@ -40,24 +40,16 @@ exports.signup = async (req, res) => {
             },
         };
 
-        jwt.sign(
-            payload,
-            'jwtSecret',
-            { expiresIn: '24h' }, // Token expires in 24 hours
-            (err, token) => {
-                if (err) throw err;
-                res.json({ token });
-            }
-        );
-
-        res.send("user added successfully")
+        return res.status(200).json({
+            msg: "User added successfully"
+        })
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');
     }
 };
 
-exports.signin = async (req, res) => {
+exports.signIn = async (req, res) => {
     const { email, password } = req.body;
 
     console.log("rerererfervervreverv", req.body);
