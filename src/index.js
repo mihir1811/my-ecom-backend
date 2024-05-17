@@ -3,12 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-
-
 const productRoutes = require('./routes/productRoutes');
 const authRoutes = require('./routes/authRoutes');
-
-const PORT = 5000;
+require('dotenv').config()
 
 // Import other routes as needed
 
@@ -29,13 +26,12 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Connect to MongoDB Atlas
-const MONGODB_URI = 'mongodb+srv://mihirroxontechnologies:RtCUaAduWcOZizHf@cluster0.k6o8ccp.mongodb.net/';
-mongoose.connect(MONGODB_URI)
+mongoose.connect(process.env.MONGO_URL)
     .then(() => {
-        console.log('Connected to MongoDB Atlas');
+        console.log('Connected to MongoDB ');
     })
     .catch((error) => {
-        console.error('Error connecting to MongoDB Atlas:', error);
+        console.error('Error connecting to MongoDB :', error);
     });
 
 
@@ -46,6 +42,6 @@ app.use('/api/auth/', authRoutes);
 // Use other routes as needed
 
 // Start server
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server is running on port ${process.env.PORT}`);
 });
