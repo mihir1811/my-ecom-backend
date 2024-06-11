@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const productRoutes = require('./routes/productRoutes');
-const authRoutes = require('./routes/authRoutes');
+const authRoutes = require('./routes/userRoutes');
 const storeRoutes = require("./routes/storeRoutes")
 require('dotenv').config()
 

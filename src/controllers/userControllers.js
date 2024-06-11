@@ -51,7 +51,6 @@ exports.signIn = async (req, res) => {
       let user = await User.findOne({ email });
 
       // need user role
-
       if (!user) {
           return res.status(400).json({ msg: 'Invalid credentials' });
       }
@@ -98,6 +97,17 @@ exports.logOut = async (req , res)=>{
 }
 
 exports.getAllSellersList = async (req , res) =>{
+    try {
+      let sellers = await User.find({  });
+
+      
+        res.send("data")
+    } catch (error) {
+        res.status(500).send('Server error');
+    }
+}
+
+exports.getAllUsersList = async (req , res) =>{
     try {
         res.send("data")
     } catch (error) {
