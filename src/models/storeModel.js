@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const {ObjectId} = mongoose.Schema
+const { ObjectId } = mongoose.Schema
 
 const storeSchema = new mongoose.Schema({
   storeName: {
@@ -10,15 +10,13 @@ const storeSchema = new mongoose.Schema({
     type: ObjectId,
     required: true,
   },
-  status: {
-    type: Number
+  address: {
+    type: Object
   },
-  statusText:{
-    type: String
+  isVerified:{
+    type: Boolean,
+    default: false
   },
-  address:{
-    type:Object
-  }
 });
 
 const Store = mongoose.model('Store', storeSchema);

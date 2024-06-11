@@ -5,6 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const productRoutes = require('./routes/productRoutes');
 const authRoutes = require('./routes/authRoutes');
+const storeRoutes = require("./routes/storeRoutes")
 require('dotenv').config()
 
 // Import other routes as needed
@@ -36,8 +37,9 @@ mongoose.connect(process.env.MONGO_URL)
 
 
 // Routes
-app.use('/api/', productRoutes);
 app.use('/api/auth/', authRoutes);
+app.use('/api/', productRoutes);
+app.use('/', storeRoutes);
 
 // Use other routes as needed
 
