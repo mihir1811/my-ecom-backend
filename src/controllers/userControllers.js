@@ -99,8 +99,6 @@ exports.logOut = async (req , res)=>{
 exports.getAllSellersList = async (req , res) =>{
     try {
       let sellers = await User.find({  });
-
-      
         res.send("data")
     } catch (error) {
         res.status(500).send('Server error');
@@ -113,4 +111,26 @@ exports.getAllUsersList = async (req , res) =>{
     } catch (error) {
         res.status(500).send('Server error');
     }
+}
+
+exports.getUserDetails = async (req , res) =>{
+  const userId = req.query.user_id;
+  try {
+    console.log(req.query)
+    const getuser = await User.findById({_id: userId})
+
+
+    if (!userId) {
+      return res.status(400).send('Missing userId query parameter');
+    }
+
+    if(getuser){
+      res.status(200).send(getuser)
+    }else{
+      res.send({message:"user not found"})
+    }
+
+  } catch (error) {
+    console.log(error)
+  }
 }

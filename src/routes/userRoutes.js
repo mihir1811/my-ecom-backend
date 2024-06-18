@@ -7,8 +7,7 @@ const authMiddleware = require("../middleware/authMiddleware")
 router.post('/register', userControllers.signup);
 router.post('/login', userControllers.signIn);
 router.post('/logout',authMiddleware , userControllers.logOut);
-
-
+router.get("/user" ,userControllers.getUserDetails )
 // sellers api
 
 module.exports = router;
